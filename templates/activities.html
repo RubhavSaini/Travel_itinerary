@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Select Activities | Travel Planner{% endblock %}
+{% block content %}
+<h3 class="text-center mb-4">Available Activities for {{ trip.destination }}</h3>
+
+<form method="POST">
+  <div class="list-group mb-4">
+    {% if activities|length == 0 %}
+      <div class="alert alert-warning text-center" style="margin: 20px 0;">
+        No activities found for your interests. Please try different notes or check back later.
+      </div>
+      <div class="text-center mt-4">
+        <a href="{{ url_for('home') }}" class="btn btn-outline-secondary">🏠 Home</a>
+      </div>
+    {% else %}
+      {% for act in activities %}
+      <label class="list-group-item">
+        <input class="form-check-input me-2" type="checkbox" name="activities" value="{{ act.name }}"
+               {% if act.selected %}checked{% endif %}>
+        <strong>{{ act.name }}</strong> — {{ act.category }} ({{ act.duration }} hrs, {{ act.location }})
+      </label>
+      {% endfor %}
+      <div class="text-center mt-3">
+        <button type="submit" class="btn btn-primary">Save & Generate Schedule</button>
+      </div>
+    {% endif %}
+  </div>
+</form>
+{% endblock %}

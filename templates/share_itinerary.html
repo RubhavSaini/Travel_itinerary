@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Shared Itinerary | Travel Planner{% endblock %}
+{% block content %}
+<h3 class="text-center mb-4">Shared Itinerary for {{ trip.destination }}</h3>
+
+{% for day, acts in day_plan.items() %}
+<div class="card mb-3 shadow-sm">
+  <div class="card-header bg-secondary text-white">Day {{ day }}</div>
+  <ul class="list-group list-group-flush">
+    {% for act in acts %}
+    <li class="list-group-item">
+      <strong>{{ act.name }}</strong> — {{ act.category }} ({{ act.duration }} hrs)
+      <br><small class="text-muted">📍 {{ act.location }}</small>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endfor %}
+
+<div class="text-center mt-4">
+  <a href="{{ url_for('home') }}" class="btn btn-outline-secondary">🏠 Home</a>
+</div>
+{% endblock %}

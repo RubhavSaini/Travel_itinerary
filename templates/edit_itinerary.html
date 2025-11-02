@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Edit Itinerary | Travel Planner{% endblock %}
+{% block content %}
+<h3 class="text-center mb-4">Edit Itinerary for {{ trip.destination }}</h3>
+
+<form method="POST">
+  <table class="table table-bordered align-middle">
+    <thead class="table-primary">
+      <tr>
+        <th>Activity</th>
+        <th>Category</th>
+        <th>Duration (hrs)</th>
+        <th>Assigned Day</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for act in activities %}
+      <tr>
+        <td>{{ act.name }}</td>
+        <td>{{ act.category }}</td>
+        <td>{{ act.duration }}</td>
+        <td>
+          <select class="form-select" name="day_{{ act.id }}">
+            {% for d in range(1, trip.num_days + 1) %}
+            <option value="{{ d }}" {% if act.day==d %}selected{% endif %}>Day {{ d }}</option>
+            {% endfor %}
+          </select>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="text-center mt-3">
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+  </div>
+</form>
+{% endblock %}

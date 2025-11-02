@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Itinerary | Travel Planner{% endblock %}
+{% block content %}
+<h3 class="mb-4 text-center">Itinerary for {{ trip.destination }}</h3>
+
+{% for day, acts in day_plan.items() %}
+<div class="card mb-3 shadow-sm">
+  <div class="card-header bg-primary text-white">Day {{ day }}</div>
+  <ul class="list-group list-group-flush">
+    {% for act in acts %}
+    <li class="list-group-item">
+      <strong>{{ act.name }}</strong> — {{ act.category }} ({{ act.duration }} hrs)
+      <br><small class="text-muted">📍 {{ act.location }}</small>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endfor %}
+
+{% if justification %}
+<div class="card mb-3 shadow-sm">
+  <div class="card-header bg-secondary text-white">AI Grouping Justification</div>
+  <div class="card-body">
+    <pre style="white-space: pre-wrap;">{{ justification }}</pre>
+  </div>
+</div>
+{% endif %}
+
+<div class="d-flex justify-content-center gap-3 mt-4">
+  <a href="{{ url_for('generate_schedule_edit', trip_id=trip.id) }}" class="btn btn-outline-primary">Edit Itinerary</a>
+</div>
+<div class="d-flex justify-content-center mt-3">
+  <a href="{{ url_for('share_itinerary', trip_id=trip.id) }}" class="btn btn-success">Share Itinerary</a>
+</div>
+{% endblock %}

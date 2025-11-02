@@ -1,0 +1,38 @@
+[
+  {
+    "name": "City Museum",
+    "category": "Culture",
+    "duration": 2,
+    "location": "Downtown"
+  },
+  {
+    "name": "Central Park",
+    "category": "Nature",
+    "duration": 3,
+    "location": "North City"
+  },
+  {
+    "name": "River Cruise",
+    "category": "Leisure",
+    "duration": 2,
+    "location": "Harbor"
+  },
+  {
+    "name": "Art Gallery",
+    "category": "Culture",
+    "duration": 1,
+    "location": "Downtown"
+  },
+  {
+    "name": "Shopping District",
+    "category": "Shopping",
+    "duration": 3,
+    "location": "Midtown"
+  },
+  {
+    "name": "Local Food Tour",
+    "category": "Food",
+    "duration": 2,
+    "location": "Old City"
+  }
+]
